@@ -61,19 +61,26 @@ def soma(x1, x2):
 
 def monta_palavra(palavra1, palavra2, palavra3, palavra4):
     print("Montando a primeira soma...")
-
     print("Primeira palavra", palavra1)
     print("Segunda palavra ", palavra2)
-
     resultado1 = soma(palavra1, palavra2)
-    resultado2 = soma(resultado1, palavra3)
-    resultado3 = soma(resultado2, palavra4)
-
     print("primeira soma: ", resultado1, "\n\n")
+
+    print("Montando a segunda soma...")
+    print("Primeira palavra", resultado1)
+    print("Segunda palavra ", palavra3)
+    resultado2 = soma(resultado1, palavra3)
     print("segunda soma: ", resultado2, "\n\n")
+
+    print("Montando a terceira soma...")
+    print("Primeira palavra", resultado2)
+    print("Segunda palavra ", palavra4)
+    resultado3 = soma(resultado2, palavra4)
     print("terceira soma: ", resultado3, "\n\n")
 
     return resultado3
 
 
 checksum = monta_palavra(np.asarray([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], dtype=int), np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1], dtype=int), np.asarray([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], dtype=int), np.asarray([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], dtype=int))
+
+print("checksum final: ", checksum)
