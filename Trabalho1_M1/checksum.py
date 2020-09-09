@@ -1,7 +1,7 @@
 import numpy as np
 
 def comp1(palavra):
-    aux = np.zeros(len(palavra),dtype=int)
+    aux = np.zeros(len(palavra), dtype=int)
     for i in range(len(palavra)):
         if palavra[i] == 0:
             aux[i] = 1
@@ -60,7 +60,6 @@ def soma(x1, x2):
                 result[i] = 0
 
     if aux[aux.size-1] == 1:
-        aux[aux.size-1] = 0
         aux2 = np.zeros(len(x1), dtype=int)
         aux2[0] = 1
         return somaUm(result, aux2)
@@ -91,7 +90,7 @@ def monta_palavra(palavra1, palavra2, palavra3, palavra4):
     print("EDC: ", EDC, "\n")
 
     Tx = str(palavra1) + " " + str(palavra2) + " " + str(palavra3) + " " + str(palavra4) + ":" + str(EDC)
-    print("Tx", Tx)
+    print("Tx", Tx.replace("[", "").replace("]", " "))
     return EDC
 
 def verificaErro(palavra1, palavra2, palavra3, palavra4, EDC):
@@ -116,8 +115,8 @@ def verificaErro(palavra1, palavra2, palavra3, palavra4, EDC):
     resultadoFinal = soma(resultado3, EDC)
     print("resultado final: ", resultadoFinal, "\n")
 
-    Rx = str(palavra1) + " " + str(palavra2) + " " + str(palavra3) + " " + str(palavra4) + ":" + str(EDC)
-    print("Rx", Rx)
+    Rx = str(palavra1) + str(palavra2) + str(palavra3) + str(palavra4) + ":" + str(EDC)
+    print("Rx", Rx.replace("[", "").replace("]", " "))
     return resultadoFinal
 
 
