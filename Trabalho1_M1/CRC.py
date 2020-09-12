@@ -71,8 +71,8 @@ def monta_palavra(palavra, polinomio):
     print("Mensagem para envio ", crc, "\n\n")
     return crc
 
-
-# palavra e polinomio de divisao como parametro
-crc = monta_palavra(np.asarray([1, 0, 0, 1, 1, 0, 1, 0], dtype=np.uint8), np.asarray([1, 1, 0, 1]))
-# palavra recebida e polinomio de divisao
-detecta_erro(crc, np.asarray([1, 1, 0, 1]))
+if __name__ == "__main__":
+    # palavra e polinomio de divisao como parametro
+    crc = monta_palavra(np.asarray([1, 0, 0, 1, 1, 0, 1, 0], dtype=np.uint8), np.asarray([1, 1, 0, 1]))
+    # palavra recebida e polinomio de divisao
+    detecta_erro(crc, np.asarray([1, 1, 0, 1]))

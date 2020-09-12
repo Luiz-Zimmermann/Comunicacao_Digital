@@ -122,21 +122,23 @@ def verificaErro(palavra1, palavra2, palavra3, palavra4, EDC):
     # Retorna o resultado para verificacao de erro
     return resultadoFinal
 
-# Chama funcao para fazer as contas e descobrir o EDC
-EDC = monta_palavra(np.asarray([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], dtype=int), np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1], dtype=int), np.asarray([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], dtype=int), np.asarray([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], dtype=int))
+if __name__ == "__main__":
 
-# Chama funcao de verifica erro passando 4 palavras e o EDC como parametro
-VerificaErroFinal = verificaErro(np.asarray([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], dtype=int), np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1], dtype=int), np.asarray([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], dtype=int), np.asarray([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], dtype=int), EDC)
+    # Chama funcao para fazer as contas e descobrir o EDC
+    EDC = monta_palavra(np.asarray([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], dtype=int), np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1], dtype=int), np.asarray([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], dtype=int), np.asarray([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], dtype=int))
 
-testa = 0
-# Laco de repeticao para verificacao de erro
-for i in range(len(VerificaErroFinal)):
-    # Se existe algum erro
-    if VerificaErroFinal[i] == 0:
-        testa += 1
+    # Chama funcao de verifica erro passando 4 palavras e o EDC como parametro
+    VerificaErroFinal = verificaErro(np.asarray([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], dtype=int), np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1], dtype=int), np.asarray([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], dtype=int), np.asarray([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], dtype=int), EDC)
 
-# Se nao tem erro, printa que esta tudo ok
-if testa == 0:
-    print("Sem erro")
-else:   #se tem erro printa que algo deu errado
-    print("Com ruim")
+    testa = 0
+    # Laco de repeticao para verificacao de erro
+    for i in range(len(VerificaErroFinal)):
+        # Se existe algum erro
+        if VerificaErroFinal[i] == 0:
+            testa += 1
+
+    # Se nao tem erro, printa que esta tudo ok
+    if testa == 0:
+        print("Sem erro")
+    else:   #se tem erro printa que algo deu errado
+        print("Com ruim")
