@@ -42,7 +42,18 @@ if __name__ == '__main__':
             print(CRC.detecta_erro(mensagem_str, polinomi_str))
 
     elif int(metodo) == 3:
-        pass
+        print("Insira as 4 palavras de 12 bits para fazer o checksum: ")
+        palavra1 = input("palavra1: ")
+        palavra2 = input("palavra2: ")
+        palavra3 = input("palavra3: ")
+        palavra4 = input("palavra4: ")
+
+        correto = len(palavra1) == 12 and len(palavra2) == 12 and len(palavra3) == 12 and len(palavra4) == 12
+
+        if correto:
+            checksum.iniciaChecksum(palavra1, palavra2, palavra3, palavra4)
+        else:
+            print("Palavras incompativeis!!")
     else:
         print("Opção invalida!!")
         exit(0)
