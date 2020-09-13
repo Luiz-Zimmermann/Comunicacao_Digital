@@ -1,21 +1,32 @@
 import numpy as np
 
-#
+
 def bitwise(x1, x2):
     result = np.zeros(len(x1))
     result[x1 != x2] = 1
     return result
 
 
+def string2array(a):
+    vet = []
+    for x in a:
+        vet.append(int(x))
+    return np.asarray(vet, dtype=np.uint8)
+
+
 def detecta_erro(palavra, polinomio):
-    print("Verificando se ha erro...")
+    print("\nVerificando se ha erro...")
 
     print("Palavra recebida", palavra)
     print("Polinomio divisor", polinomio)
 
-    px = palavra
-    cx = polinomio
-    k = len(polinomio) - 1
+    if isinstance(palavra, str):
+        px = string2array(palavra)
+    else:
+        px = palavra
+
+    cx = string2array(polinomio)
+    k = len(cx) - 1
 
     i = 0
     while i < len(px) - k:
@@ -29,12 +40,13 @@ def detecta_erro(palavra, polinomio):
         px[i:i + k + 1] = xor
         i = 0
 
-    res = ["sem erro", "com erro"]
     print("Resto divisao ", px)
-    # np.max retorna o maior valor do vetor px
-    # quando todos os valores sao igual a zero, a funcao retorna zero
-    print("Mensagem", res[np.max(px)], "\n\n")
-    return res[np.max(px)]
+
+    for x in px:
+        if x == 1:
+            return "Mensagem com erro\n\n"
+
+    return "Mensagem sem erro"
 
 
 def monta_palavra(palavra, polinomio):
@@ -43,9 +55,9 @@ def monta_palavra(palavra, polinomio):
     print("Palavra", palavra)
     print("Polinomio C(x)", polinomio, "de grau", len(polinomio)-1)
 
-    mx = palavra
-    cx = polinomio
-    k = len(polinomio)-1    # grau do polinomio
+    mx = string2array(palavra)
+    cx = string2array(polinomio)
+    k = len(cx)-1    # grau do polinomio
 
     # polinomio p(x) = palavra + k bits
     px = np.concatenate((mx, np.zeros(k))).astype(np.uint8)
@@ -70,6 +82,7 @@ def monta_palavra(palavra, polinomio):
 
     print("Mensagem para envio ", crc, "\n\n")
     return crc
+
 
 if __name__ == "__main__":
     # palavra e polinomio de divisao como parametro
