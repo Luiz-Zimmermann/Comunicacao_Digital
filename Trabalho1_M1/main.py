@@ -25,7 +25,7 @@ if __name__ == '__main__':
     elif int(metodo) == 2:
         pass
     elif int(metodo) == 3:
-        print("Insira as 4 palavras para fazer o checksum: ")
+        print("Insira as 4 palavras de 12 bits para fazer o checksum: ")
         palavra1 = input("palavra1: ")
         palavra2 = input("palavra2: ")
         palavra3 = input("palavra3: ")

@@ -125,16 +125,17 @@ def verificaErro(palavra1, palavra2, palavra3, palavra4, EDC):
 def iniciaChecksum(palavra1, palavra2, palavra3, palavra4):
     vet1 = []
     for x in palavra1:
-        vet1.append(x)
+        vet1.append(int(x))
+
     vet2 = []
     for x in palavra2:
-        vet2.append(x)
+        vet2.append(int(x))
     vet3 = []
     for x in palavra3:
-        vet3.append(x)
+        vet3.append(int(x))
     vet4 = []
     for x in palavra4:
-        vet4.append(x)
+        vet4.append(int(x))
 
     # Chama funcao para fazer as contas e descobrir o EDC
     EDC = monta_palavra(vet1, vet2, vet3, vet4)
@@ -153,16 +154,16 @@ def iniciaChecksum(palavra1, palavra2, palavra3, palavra4):
         if correto:
             vetAux1 = []
             for x in palavraErro1:
-                vetAux1.append(x)
+                vetAux1.append(int(x))
             vetAux2 = []
             for x in palavraErro2:
-                vetAux2.append(x)
+                vetAux2.append(int(x))
             vetAux3 = []
             for x in palavraErro3:
-                vetAux3.append(x)
+                vetAux3.append(int(x))
             vetAux4 = []
             for x in palavraErro4:
-                vetAux4.append(x)
+                vetAux4.append(int(x))
 
             # Chama funcao de verifica erro passando 4 palavras e o EDC como parametro
             VerificaErroFinal = verificaErro(vetAux1,
