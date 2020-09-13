@@ -1,5 +1,6 @@
 import numpy as np
 
+# Função para descobrir onde irão os bits de paridade
 def check_pos(pos, tam):
 
     for i in range(tam):
@@ -9,6 +10,7 @@ def check_pos(pos, tam):
 
     return False
 
+# Cria o corpo do vetor da mensagem final, de acordo com o padrão escolhido
 def format_vet(vet,p,min, max):
     # alterar o tamanho do aux
     aux = np.zeros(max)
@@ -28,6 +30,8 @@ def format_vet(vet,p,min, max):
 
     return aux
 
+# Coloca em um vetor, os bits que o bit de paridade cobre
+# Ex: p0 = b0^b1^b3
 def redundant_values(i, vet):
     aux = []
     x = 0
@@ -44,6 +48,7 @@ def redundant_values(i, vet):
             y = 2**i
 
     return aux
+
 
 def hamming(message, tipo):
     vet = []
@@ -82,18 +87,20 @@ def hamming(message, tipo):
     else:
         print("Opcao incorreta!!")
 
-
+# Cria a mensagem final que será enviada.
+# dados + bits de paridade
 def encode(vet, tipo, tam):
-    # alterar quantidade de bits paridade
+
     p = np.zeros(tipo)
     vet = format_vet(vet,p,tipo,tam)
 
+    # Calcula o valor do bit de paridade
     for i in range(len(p)):
         aux = redundant_values(i, vet)
-        #print("i: ",i, aux)
         for j in aux[1:len(aux)]:
             p[i] = int(p[i])^int(j)
 
+    # Adiciona o bit de paridade no vetor
     for i in range(1,len(vet)+1):
         if check_pos(i, tipo):
             v = p[0]
@@ -102,17 +109,19 @@ def encode(vet, tipo, tam):
 
     return vet
 
-
+# Decodifica a mensagem recebida
 def decode(vet, tipo):
-    # alterar quantidade de bits paridade
+    # variáveis para verificação de erro
     k = np.zeros(tipo)
 
+    # Calcula o valor das variáveis de erro
     for i in range(len(k)):
         aux = redundant_values(i, vet)
         for j in aux:
-            #print("i: ",i, "valores: ",int(k[i]),int(j),int(k[i])^int(j))
             k[i] = int(k[i])^int(j)
 
+    # Se o conjunto das variáveis conter pelo menos um valor 1, então há um erro na mensagem.
+    # Calcula a posição do erro e o corrige.
     if k.__contains__(1):
         pos = 0
         for i in range(len(k)):
@@ -126,6 +135,6 @@ def decode(vet, tipo):
 
     else:
         print("Não há erro")
-        print("Mensagem: ", vet)
+        print("Mensagem recebida: ", vet)
 
 
