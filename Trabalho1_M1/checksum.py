@@ -122,13 +122,62 @@ def verificaErro(palavra1, palavra2, palavra3, palavra4, EDC):
     # Retorna o resultado para verificacao de erro
     return resultadoFinal
 
-if __name__ == "__main__":
+def iniciaChecksum(palavra1, palavra2, palavra3, palavra4):
+    vet1 = []
+    for x in palavra1:
+        vet1.append(x)
+    vet2 = []
+    for x in palavra2:
+        vet2.append(x)
+    vet3 = []
+    for x in palavra3:
+        vet3.append(x)
+    vet4 = []
+    for x in palavra4:
+        vet4.append(x)
 
     # Chama funcao para fazer as contas e descobrir o EDC
-    EDC = monta_palavra(np.asarray([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], dtype=int), np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1], dtype=int), np.asarray([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], dtype=int), np.asarray([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], dtype=int))
+    EDC = monta_palavra(vet1, vet2, vet3, vet4)
 
-    # Chama funcao de verifica erro passando 4 palavras e o EDC como parametro
-    VerificaErroFinal = verificaErro(np.asarray([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], dtype=int), np.asarray([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1], dtype=int), np.asarray([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1], dtype=int), np.asarray([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], dtype=int), EDC)
+    opcao = input("Deseja simular um erro?(s ou n)")
+
+    if opcao == "s":
+        print("Insira as 4 palavras: ")
+        palavraErro1 = input("palavra1: ")
+        palavraErro2 = input("palavra2: ")
+        palavraErro3 = input("palavra3: ")
+        palavraErro4 = input("palavra4: ")
+
+        correto = len(palavraErro1) == 12 and len(palavraErro2) == 12 and len(palavraErro3) == 12 and len(palavraErro4) == 12
+
+        if correto:
+            vetAux1 = []
+            for x in palavraErro1:
+                vetAux1.append(x)
+            vetAux2 = []
+            for x in palavraErro2:
+                vetAux2.append(x)
+            vetAux3 = []
+            for x in palavraErro3:
+                vetAux3.append(x)
+            vetAux4 = []
+            for x in palavraErro4:
+                vetAux4.append(x)
+
+            # Chama funcao de verifica erro passando 4 palavras e o EDC como parametro
+            VerificaErroFinal = verificaErro(vetAux1,
+                                             vetAux2,
+                                             vetAux3,
+                                             vetAux4,
+                                             EDC)
+        else:
+            print("Erro em algumas da palavras!!!")
+
+    elif opcao == "n":
+        pass
+    else:
+        print("Opcao incorreta!!")
+
 
     testa = 0
     # Laco de repeticao para verificacao de erro
@@ -141,4 +190,4 @@ if __name__ == "__main__":
     if testa == 0:
         print("Sem erro")
     else:   #se tem erro printa que algo deu errado
-        print("Com ruim")
+        print("Com erro")
